@@ -1,0 +1,29 @@
+// Footer
+// Do not display footer on mobile. !important to override animation library.
+.footer {
+  display: none !important;
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50%;
+  opacity: 0;
+  transition: opacity 400ms;
+  overflow: hidden;
+
+  a {
+    margin: 0 1em;
+  }
+}
+
+// > 800px style - visible
+@media (min-width: 800px) {
+  .footer {
+    display: flex !important;
+    height: 2rem;
+    opacity: 1;
+  }
+}

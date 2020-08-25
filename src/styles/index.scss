@@ -1,0 +1,54 @@
+@import 'variables';
+
+@import 'fonts';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow: hidden;
+}
+
+h1,
+h2 {
+  font-family: 'Rowdies', cursive;
+  font-weight: 300;
+}
+
+a {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+
+  &.link {
+    transition: transform 400ms, opacity 400ms;
+
+    &:after {
+      content: "";
+      display: block;
+      padding-top: 4px;
+      border-bottom: 1px solid lighten($text-color, 30%);
+      transform: scaleX(0) translateY(-2px);
+      transition: transform 400ms;
+    }
+
+    &:hover {
+      opacity: 0.7;
+      transform: translateY(-2px);
+    }
+
+    &:hover:after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}

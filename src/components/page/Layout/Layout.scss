@@ -1,0 +1,192 @@
+@import '~styles/variables';
+
+/*******************************************************************************
+* Mobile screen styles (< 800px)
+*******************************************************************************/
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+// Scrolling background image
+// Do not load background image or play animation on small devices
+@keyframes backgroundAnimation {
+	from { transform: translateY(-120vh); }
+	to { transform: translateY(0); }
+}
+
+.background-image {
+  position: absolute;
+  height: 300vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 400ms;
+  animation: backgroundAnimation 90s linear infinite;
+  animation-play-state: paused;
+  animation-direction: alternate;
+}
+
+.background-loader {
+  display: none;
+}
+
+// Main container and content
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  color: $text-color;
+  background-color: $background-color;
+  z-index: 2;
+  overflow-x: auto;
+  transition: background-color 400ms;
+
+  @media(min-width: $content-min-width) {
+    align-items: center;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: calc(50vh - 17rem);
+    left: 0;
+    z-index: 1;
+    background: $text-color;
+    animation: bgPulse 20s ease-out infinite;
+    animation-direction: alternate;
+    pointer-events: none;
+    transition: opacity 400ms;
+    will-change: transform, opacity;
+  }
+
+  &:before {
+    top: 0;
+    transform-origin: top;
+  }
+
+  &:after {
+    bottom: 0;
+    transform-origin: bottom;
+    animation-delay: -1s;
+  }
+}
+
+@keyframes bgPulse {
+  0% {
+    transform: scaleY(0.9);
+  }
+
+  20% {
+    transform: scaleY(0.95);
+  }
+
+  40% {
+    transform: scaleY(0.8);
+  }
+
+  60% {
+    transform: scaleY(0.9);
+  }
+
+  80% {
+    transform: scaleY(0.85);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: $content-min-width;
+  overflow: auto;
+
+  &:global(.content-animating) {
+    overflow: hidden;
+  }
+}
+
+// Footer
+// Do not display footer on mobile. !important to override animation library.
+.footer {
+  display: none !important;
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50%;
+  opacity: 0;
+  transition: opacity 400ms;
+  overflow: hidden;
+
+  a {
+    margin: 0 1em;
+  }
+}
+
+/*******************************************************************************
+* Non-mobile screen styles (> 800px)
+*******************************************************************************/
+// background-image 100px opacity transition buffer
+@media (min-width: #{$large-screen-size - 100}) {
+  .background-image {
+    background: url('/images/bg_postits_blur.png');
+    background-size: cover;
+  }
+}
+
+// > 800px background and container styles
+@media (min-width: $large-screen-size) {
+  .background-image {
+    opacity: 1;
+
+    &.background-scroll {
+      animation-play-state: running;
+    }
+  }
+
+  .container {
+    width: 65%;
+    background: rgba($background-color, 0.8);
+    box-shadow: 0 0 7px 10px rgba($background-color, 0.8);
+    transition: width 100ms;
+
+    &:before,
+    &:after {
+      opacity: 0;
+      animation-play-state: paused;
+    }
+  }
+
+  .bg-loading .container {
+    width: 100%;
+  }
+
+  .content {
+    padding-bottom: 2rem;
+  }
+
+  .footer {
+    display: flex !important;
+    height: 2rem;
+    opacity: 1;
+  }
+}
