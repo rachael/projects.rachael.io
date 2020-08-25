@@ -3,45 +3,23 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loadCompleteBG, wiggle } from 'redux/actions';
-import initialState from 'redux/initialState';
+import { loadCompleteBG } from 'redux/actions';
 
 import './Layout.scss';
 
-import { Dots, Footer } from '..';
+import { Footer } from '..';
 
 function Layout({
   title,
    ...props
 }) {
-  const dispatch = useDispatch();
-
-  // wiggle demo: controls whether dots are rendered or not
-  const wiggleEnabled = useSelector(state => state.wiggle);
-  const wiggleCB = useCallback(() => dispatch(wiggle(!wiggleEnabled)));
-
-  // background scroll effect
-  const backgroundScroll = useSelector(state => state.backgroundScroll);
-  const backgroundClass = classNames(
-    'background-image',
-    { ['background-scroll']: backgroundScroll }
-  );
-
-  // content animating: hides overflow and expands container during animations.
-  // optimistically assumes content will animate -- must set to false inside
-  // content to reenable scrolling.
-  const contentAnimating = useSelector(state => state.contentAnimating);
-  const contentClasses = classNames(
-    'content',
-    { ['content-animating']: contentAnimating }
-  );
-
   // image load
+  const dispatch = useDispatch();
   const bgRef = useRef();
   const isLoadCompleteBG = useSelector(state => state.loadCompleteBG);
   const setLoadCompleteCB = useCallback(() => {
     if(!isLoadCompleteBG) dispatch(loadCompleteBG());
-  });
+  }, [isLoadCompleteBG, dispatch]);
   useEffect(() => {
     if(!isLoadCompleteBG && bgRef.current.complete) dispatch(loadCompleteBG());
   });
@@ -116,13 +94,14 @@ function Layout({
       <img
         className="background-loader"
         src="/images/bg_postits_blur.png"
+        alt=""
         ref={bgRef}
         onLoad={setLoadCompleteCB}
       />
       <AnimatePresence>
         {isLoadCompleteBG && <motion.div
           key="bg"
-          className={backgroundClass}
+          className="background-image"
           variants={bgVariants}
         />}
       </AnimatePresence>
@@ -133,20 +112,14 @@ function Layout({
       >
         <motion.div
           key="content"
-          className={contentClasses}
+          className="content"
           variants={contentVariants}
         >
           {props.children}
         </motion.div>
         <Footer key="footer">
-          <a className="link"
-             href="#"
-             onClick={wiggleCB}>
-            wiggle
-          </a>
         </Footer>
       </motion.div>
-      <Dots renderDots={wiggleEnabled} />
     </motion.div>
   );
 }

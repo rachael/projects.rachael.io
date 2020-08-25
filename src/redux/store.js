@@ -5,8 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import initialState from 'redux/initialState';
 import reducer from 'redux/reducers';
 
-let store;
-
 function initializeStore(preloadedState = initialState) {
   return createStore(
     reducer,
