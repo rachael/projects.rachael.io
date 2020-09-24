@@ -1,36 +1,45 @@
+@import '~styles/variables';
+
 .Profile {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.Profile-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Profile-image {
+  height: 90vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .Profile-logo {
-    animation: Profile-logo-spin infinite 20s linear;
-  }
-}
-
-.Profile-header {
+.Profile-text {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding: 5vmin;
+  text-align: right;
+}
+
+.Profile-header {
+  font-family: 'Source Code Pro', monospace;
   font-size: calc(10px + 2vmin);
 }
 
 .Profile-link {
-  color: #61dafb;
-}
+  position: relative;
+  color: $link-color;
 
-@keyframes Profile-logo-spin {
-  from {
-    transform: rotate(0deg);
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: calc(100% + 2px);
+    left: 0;
+    border-top: 1px solid transparent;
+    transition: border-color 400ms;
   }
-  to {
-    transform: rotate(360deg);
+
+  &:hover:after {
+    border-color: $link-color;
   }
 }

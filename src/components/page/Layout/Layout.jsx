@@ -51,8 +51,7 @@ function Layout({
       >
         {props.children}
       </motion.div>
-      <Footer key="footer">
-      </Footer>
+      <Footer key="footer" />
     </motion.div>
   );
 }

@@ -1,6 +1,7 @@
-// Footer
+@import '~styles/variables';
+
 // Do not display footer on mobile. !important to override animation library.
-.footer {
+.Footer {
   display: none !important;
   position: absolute;
   bottom: 0;
@@ -9,19 +10,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50%;
+  font-size: 80%;
   opacity: 0;
   transition: opacity 400ms;
   overflow: hidden;
+}
 
-  a {
-    margin: 0 1em;
+.Footer-link {
+  position: relative;
+  margin: 0 1em;
+  color: $link-color;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: calc(100% + 2px);
+    left: 0;
+    border-top: 1px solid transparent;
+    transition: border-color 400ms;
+  }
+
+  &:hover:after {
+    border-color: $link-color;
   }
 }
 
 // > 800px style - visible
 @media (min-width: 800px) {
-  .footer {
+  .Footer {
     display: flex !important;
     height: 2rem;
     opacity: 1;

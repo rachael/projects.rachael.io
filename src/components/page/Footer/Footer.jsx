@@ -9,7 +9,7 @@ function Footer({ ...props }) {
     visible: {
       opacity: 1,
       transition: {
-        duration: 1,
+        duration: 0.8,
       }
     },
     hidden: {
@@ -21,10 +21,15 @@ function Footer({ ...props }) {
   };
   return (
     <motion.footer
-      className="footer"
+      className="Footer"
       variants={footerVariants}
     >
-      {props.children}
+      <a
+        className="Footer-link"
+        href="https://rachael.io"
+      >
+        rachael.io
+      </a>
     </motion.footer>
   );
 }
