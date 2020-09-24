@@ -1,16 +1,13 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 
-import { useStore } from 'redux/store';
 import { Layout } from 'components/page';
+import { Profile } from 'components/profile';
 
 function App() {
-  const store = useStore()
-
   return (
-    <Provider store={store}>
-      <Layout />
-    </Provider>
+    <Layout>
+      <Profile />
+    </Layout>
   )
 }
 

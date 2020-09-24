@@ -1,20 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useSelector } from 'react-redux';
 
 import './Footer.scss';
 
 function Footer({ ...props }) {
-  // only appear after content has loaded
-  const isLoadCompleteBG = useSelector(state => state.loadCompleteBG);
-  const isLoadCompleteContent = useSelector(state => state.loadCompleteContent);
-
   // content appear animation
   const footerVariants = {
     visible: {
       opacity: 1,
       transition: {
-        delay: 3,
         duration: 1,
       }
     },
@@ -25,7 +19,7 @@ function Footer({ ...props }) {
       }
     }
   };
-  return (isLoadCompleteBG && isLoadCompleteContent &&
+  return (
     <motion.footer
       className="footer"
       variants={footerVariants}
