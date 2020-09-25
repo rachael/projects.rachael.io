@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import profileImageSm from './images/profile_sm.png';
-import profileImageLg from './images/profile_lg.png';
 import './Profile.scss';
 
 function Profile() {
-  const [profileImageSrc, setProfileImageSrc] = useState(profileImageSm);
+  const [profileImageSrc, setProfileImageSrc] = useState('/images/profile_sm.png');
 
   useEffect(() => {
     const mql = window.matchMedia('(max-height: 711px)');
     const screenTest = (e) => {
-      if(e.matches) setProfileImageSrc(profileImageSm);
-      else setProfileImageSrc(profileImageLg);
+      if(e.matches) setProfileImageSrc('/images/profile_sm.png');
+      else setProfileImageSrc('/images/profile_lg.png');
     };
     mql.addListener(screenTest);
     screenTest(mql);
