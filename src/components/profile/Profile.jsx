@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import profileImageSm from './images/profile_sm.png';
 import profileImageLg from './images/profile_lg.png';
 import './Profile.scss';
 
 function Profile() {
+  const [profileImageSrc, setProfileImageSrc] = useState(profileImageSm);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-height: 711px)');
+    const screenTest = (e) => {
+      if(e.matches) setProfileImageSrc(profileImageSm);
+      else setProfileImageSrc(profileImageLg);
+    };
+    mql.addListener(screenTest);
+    screenTest(mql);
+    return mql.removeListener(screenTest);
+  });
+
   return (
     <div className="Profile">
       <div className="Profile-text">
@@ -29,7 +42,7 @@ function Profile() {
           </p>
         </main>
       </div>
-      <img src={profileImageSm} className="Profile-image" alt="profile image" />
+      <img src={profileImageSrc} className="Profile-image" alt="profile" />
     </div>
   );
 }
