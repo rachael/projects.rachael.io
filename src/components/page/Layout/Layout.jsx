@@ -38,19 +38,21 @@ function Layout({
   return (
     <motion.div
       key="layout"
-      className="layout"
+      className="Layout"
       initial="hidden"
       animate="visible"
       exit="hidden"
       variants={layoutVariants}
     >
-      <motion.div
-        key="content"
-        className="content"
-        variants={contentVariants}
-      >
-        {props.children}
-      </motion.div>
+      <div className="Container">
+        <motion.div
+          key="content"
+          className="Content"
+          variants={contentVariants}
+        >
+          {props.children}
+        </motion.div>
+      </div>
       <Footer key="footer" />
     </motion.div>
   );

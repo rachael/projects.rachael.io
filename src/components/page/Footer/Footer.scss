@@ -2,14 +2,11 @@
 
 // Do not display footer on mobile. !important to override animation library.
 .Footer {
-  display: none !important;
-  position: absolute;
-  bottom: 0;
-  height: 0;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 2rem;
   font-size: 80%;
   opacity: 0;
   transition: opacity 400ms;
@@ -36,11 +33,9 @@
   }
 }
 
-// > 800px style - visible
 @media (min-width: 800px) {
   .Footer {
-    display: flex !important;
-    height: 2rem;
-    opacity: 1;
+    position: absolute;
+    bottom: 0;
   }
 }

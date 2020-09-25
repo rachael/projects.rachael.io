@@ -3,28 +3,29 @@
 /*******************************************************************************
 * Mobile screen styles (< 800px)
 *******************************************************************************/
-.layout {
+.Layout {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 100vh;
   color: $text-color;
 }
 
-.content {
-  flex: 1;
+.Container {
+  max-height: 100%;
+  overflow: auto;
+}
+
+.Content {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  min-width: $content-min-width;
-  overflow-y: auto;
 }
 
 /*******************************************************************************
 * Non-mobile screen styles (> 800px)
 *******************************************************************************/
 @media (min-width: $large-screen-size) {
+  // stub
 }
