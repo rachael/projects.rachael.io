@@ -1,1 +1,1 @@
-web: yarn global add serve && serve -s build -l $PORT
+web: serve -s build -l $PORT
