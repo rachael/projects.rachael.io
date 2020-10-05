@@ -46,6 +46,7 @@
 @media (min-width: $large-screen-size) {
   .Profile {
     flex-direction: row;
+    justify-content: center;
   }
 
   .Profile-image {
